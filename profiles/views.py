@@ -33,6 +33,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib import messages #import messages
 from django.contrib.auth.views import PasswordResetCompleteView
+from .decorators import unauthenticated_user, admin_only, allowed_users
 
 
 class PasswordResetComplete(PasswordResetCompleteView):
@@ -70,6 +71,8 @@ def password_reset_request(request):
 	return render(request=request, template_name="registrations/password_reset.html", context={"password_reset_form":password_reset_form})
 
 
+#User signup view
+@unauthenticated_user
 def SignupPage(request):
 		form = CreateUserForm()
 		if request.method == 'POST':
@@ -84,6 +87,7 @@ def SignupPage(request):
 
 		context = {'form':form}
 		return render(request, 'registrations/signup.html', context)
+
 
 def loginPage(request):
 		if request.method == 'POST':

@@ -38,10 +38,21 @@
   <div class="w3-container w3-text-grey" id="jeans">
     <p></p>
   </div>
+ 
+</div>
   <!-- Product grid -->
+  
   {% for product in page_obj %}
-  <div>
+ <div>
     <div class="w3-col l3 s6">
+        {% if product.stock == 0 %}
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="{{ product.imageURL }}" style="filter: grayscale(100%); opacity: 0.7;">
+        </div>
+        <p>{{product.ProductTitle}}<br></p>
+      </div>
+      {% else %}
       <div class="w3-container">
         <div class="w3-display-container">
           <img src="{{ product.imageURL }}" style="width:100%">
@@ -53,7 +64,9 @@
         </div>
         <p>{{product.ProductTitle}}<br><b>{{product.price}}</b></p>
       </div>
+      {% endif %}
     </div>
+  </div>
       {% endfor %} 
   </div>
   <!-- Footer -->
@@ -84,6 +97,13 @@
 </div>
 
 <style>
+
+.out-of-stock img {
+    filter: grayscale(100%);
+    opacity: 0.7; /* Optional: Reduce opacity */
+}
+
+
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 

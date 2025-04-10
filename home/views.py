@@ -2,6 +2,7 @@ from django.shortcuts import render
 from profiles.decorators import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from profiles.decorators import unauthenticated_user, admin_only, allowed_users
 
 
 def index(request):
