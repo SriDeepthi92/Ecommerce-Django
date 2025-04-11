@@ -66,7 +66,7 @@ def product_list(request):
 ```
 
 ---
-<img src="img/user_staff.png" alt="Django Logo" width="300">
+<img src="static/assets/img/user_staff.png" alt="Django Logo" width="300">
 
 ### 3. **Role-Based Cart View**
 The cart view is customized based on user roles:
