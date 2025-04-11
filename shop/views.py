@@ -24,7 +24,6 @@ def product_list(request):
         return render(request, 'product-list.html', {'page_obj': page_obj})
     else:
         products = Product.objects.filter(stock__gt=0)
-      # Fetch all products
         paginator = Paginator(products, 10)  # Show 10 products per page
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
