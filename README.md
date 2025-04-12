@@ -4,6 +4,7 @@
 This is a fully functional e-commerce application built with Django. It includes features like product listing, category filtering, user authentication, shopping cart management, and stock tracking. The application also supports **role-based views** for different types of users (`is_staff`, `is_customer`, `is_sales`).
 
 ---
+<img src="static/assets/img/home.png" alt="Django Logo" width="800">
 
 ## Features
 - **User Authentication**: Login, logout, and user-specific cart management.
@@ -66,8 +67,10 @@ def product_list(request):
 ```
 
 ---
-<img src="static/assets/img/user_staff.png" alt="Django Logo" width="300">
-
+<img src="static/assets/img/user_staff.png" alt="Django Logo" width="500">
+---
+<img src="static/assets/img/user_customer.png" alt="Django Logo" width="500">
+---
 ### 3. **Role-Based Cart View**
 The cart view is customized based on user roles:
 - **Staff Users**: Can view all cart items.
