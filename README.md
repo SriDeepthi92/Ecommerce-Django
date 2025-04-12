@@ -68,9 +68,12 @@ def product_list(request):
 
 ---
 <img src="static/assets/img/user_staff.png" alt="Django Logo" width="500">
----
+
+
 <img src="static/assets/img/user_customer.png" alt="Django Logo" width="500">
+
 ---
+
 ### 3. **Role-Based Cart View**
 The cart view is customized based on user roles:
 - **Staff Users**: Can view all cart items.
@@ -231,5 +234,3 @@ pip install -r requirements.txt
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
-
-Let me know if you need further customization!
