@@ -108,7 +108,7 @@ def product_boys(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
     
     
 @login_required(login_url='login')
@@ -120,7 +120,7 @@ def product_girls(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
     else:
         products = Product.objects.filter(Gender='Girls', stock__gt=0) # Fetch all products
         paginator = Paginator(products, 10)  # Show 10 products per page
@@ -128,7 +128,7 @@ def product_girls(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
     
 
 @login_required(login_url='login')
@@ -140,7 +140,7 @@ def product_footwear(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
     else:
         products = Product.objects.filter(Q(category__name='Shoes') | Q(category__name='Flip Flops') | Q(category__name='Socks') | Q(stock__gt=0))  # Fetch all products
         paginator = Paginator(products, 10)  # Show 10 products per page
@@ -148,7 +148,7 @@ def product_footwear(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
 
 
 @login_required(login_url='login')
@@ -160,7 +160,7 @@ def product_footwear_women(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
     else:
         products = Product.objects.filter(Gender='Women', category__name__in=['Shoes', 'Flip Flops','Socks'], stock__gt=0)  # Fetch all products
         paginator = Paginator(products, 10)  # Show 10 products per page
@@ -168,7 +168,7 @@ def product_footwear_women(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
 
 @login_required(login_url='login')
 def product_footwear_men(request):
@@ -179,7 +179,7 @@ def product_footwear_men(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
     else:
         products = Product.objects.filter(Gender='Men', category__name__in=['Shoes', 'Flip Flops','Socks'], stock__gt=0)  # Fetch all products
         paginator = Paginator(products, 10)  # Show 10 products per page
@@ -187,7 +187,7 @@ def product_footwear_men(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
 
 @login_required(login_url='login')
 def product_footwear_girls(request):
@@ -198,7 +198,7 @@ def product_footwear_girls(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
     else:
         products = Product.objects.filter(Gender='Girls', category__name__in=['Shoes', 'Flip Flops','Socks'], stock__gt=0)  # Fetch all products
         paginator = Paginator(products, 10)  # Show 10 products per page
@@ -206,7 +206,7 @@ def product_footwear_girls(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
 
 @login_required(login_url='login')
 def product_footwear_boys(request):
@@ -217,7 +217,7 @@ def product_footwear_boys(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
     else:
         products = Product.objects.filter(Gender='Boys', category__name__in=['Shoes', 'Flip Flops','Socks'], stock__gt=0)  # Fetch all products
         paginator = Paginator(products, 10)  # Show 10 products per page
@@ -225,7 +225,7 @@ def product_footwear_boys(request):
         page_number = request.GET.get('page')  # Get the current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
-        return render(request, 'shop-products.html', {'page_obj': page_obj})
+        return render(request, 'product-list.html', {'page_obj': page_obj})
     
 
 """
