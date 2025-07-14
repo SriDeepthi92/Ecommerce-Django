@@ -12,7 +12,8 @@ from django.contrib import messages
 from profiles.models import CartItem
 from django.shortcuts import get_object_or_404, redirect
 from django.http import JsonResponse
-
+from .services.aliexpress_api import search_aliexpress_products
+from .models import SavedProduct
 
 @login_required(login_url='login')
 def product_list(request):
@@ -226,8 +227,38 @@ def product_footwear_boys(request):
         page_obj = paginator.get_page(page_number)  # Get the products for the current page
 
         return render(request, 'product-list.html', {'page_obj': page_obj})
-    
 
+
+def product_search(request):
+    query = request.GET.get("q", "")
+    products = []
+    page_obj = None  # <-- define it early with default
+
+    if query:
+        products = search_aliexpress_products(query)
+        paginator = Paginator(products, 10)
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+    return render(request, "search-products.html", {
+        'page_obj': page_obj,
+        "query": query
+    })
+
+"""
+def product_search(request):
+    query = request.GET.get("q", "")
+    products = []
+
+    if query:
+        products = search_aliexpress_products(query)
+
+    return render(request, "search-products.html", {
+        "products": products,
+        "query": query
+    })
+"""
 """
 @login_required(login_url='login')
 def add_to_cart(request, product_id):

@@ -87,3 +87,12 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
+
+class SavedProduct(models.Model):
+    title = models.CharField(max_length=255)
+    image_url = models.URLField()
+    price = models.CharField(max_length=50)
+    product_url = models.URLField()
+
+    def __str__(self):
+        return self.title

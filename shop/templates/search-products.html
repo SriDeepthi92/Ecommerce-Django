@@ -1,0 +1,132 @@
+{% extends "base.html" %} {% load static %} {% block title %} Index {% endblock %}
+
+{% block content %}
+<script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:83px"></div>
+  
+  <!-- Top header -->
+  <header class="w3-container w3-xlarge">
+    <p class="w3-right">
+      <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart w3-margin-right"></i></i></a>
+    <!-- Search form -->
+                    <form class="navbar-search form-inline" id="navbar-search-main">
+                      <div class="input-group input-group-merge search-bar">
+                          <span class="input-group-text" id="topbar-addon">
+                            <svg class="icon icon-xs" x-description="Heroicon name: solid/search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                            </svg>
+                          </span>
+                          <input type="text"  name="q" value="{{ query }}" class="form-control" id="topbarInputIconLeft" placeholder="Search" aria-label="Search" aria-describedby="topbar-addon">
+                      </div>
+                    </form>
+                    <!-- / Search form -->
+    </p>
+  </header>
+ 
+
+</div>
+<!-- Product grid -->
+{% if page_obj %}
+    {% for product in page_obj %}
+        <div class="w3-col l3 s6">
+            <div class="w3-container">
+                <div class="w3-display-container">
+                    <img src="{{ product.image }}" style="width:100%">
+                </div>
+                <p>{{ product.title }}<br><b>${{ product.price }}</b></p>
+            </div>
+        </div>
+    {% endfor %}
+{% elif query %}
+    <p>No products found for "{{ query }}".</p>
+{% endif %}
+
+<!-- Footer -->
+<footer>
+    <div class="w3-row-padding">
+        <div class="pagination">
+            {% if page_obj and page_obj.has_previous %}
+                <a href="?q={{ query }}&page=1">First</a>
+                <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% if page_obj %}
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            {% endif %}
+
+            {% if page_obj and page_obj.has_next %}
+                <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">Next</a>
+                <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </div>
+    </div>
+</footer>
+
+
+
+  <!-- End page content -->
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM loaded inline!");
+    // Inline script behavior
+  });
+</script>
+<style>
+
+.out-of-stock img {
+    filter: grayscale(100%);
+    opacity: 0.7; /* Optional: Reduce opacity */
+}
+
+
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+
+    .pagination a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+.pagination span {
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+</style>
+
+<script>
+// Accordion 
+function myAccFunc() {
+  var x = document.getElementById("demoAcc");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// Click on the "Jeans" link on page load to open the accordion for demo purposes
+document.getElementById("myBtn").click();
+
+
+// Open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
