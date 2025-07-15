@@ -144,5 +144,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/login/' 
 
-RAPIDAPI_KEY = "5be01f0bcamsh8211cfff407cae0p1762fbjsnda0ccaa28369"
-RAPIDAPI_HOST = "aliexpress-datahub.p.rapidapi.com"
+RAPIDAPI_KEY = env('RAPIDAPI_KEY')
+RAPIDAPI_HOST = env('RAPIDAPI_HOST')
